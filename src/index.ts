@@ -17,6 +17,8 @@ app.post("/signup",async(req,res)=>{
 
    try {
     const insertQuery = `INSERT INTO users (username,email,password) VALUES ($1,$2,$3);`
+
+    //this weird dollar syntax is used to avoid sql injection 
     const response = await pgClient.query(insertQuery,[username,email,password]);
     res.json({
         message : "user signup succesfuly"
